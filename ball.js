@@ -6,8 +6,8 @@ class Ball {
   reset() {
     this.r = 20;
     this.pos = createVector(width / 2, height / 2);
-    this.stepX = random(2, 5);
-    this.stepY = random(4, 7);
+    this.stepX = random(2, 4);
+    this.stepY = random(3, 5);
     if (random(1) < 0.5) {
       this.stepX = this.stepX * -1;
     }
@@ -53,7 +53,7 @@ class Ball {
   }
 
   hitBrick(brick) {
-    if (this.pos.x > brick.pos.x && this.pos.x < brick.pos.x + brick.width) {
+    if (this.pos.x > brick.pos.x - this.r && this.pos.x < brick.pos.x + brick.width + this.r) {
       if (this.pos.y < brick.pos.y + this.r && this.pos.y > brick.pos.y - this.r) {
         return true;
       }
