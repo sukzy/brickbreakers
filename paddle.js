@@ -3,7 +3,7 @@ class Paddle {
     this.width = 120;
     this.height = 20;
     this.pos = createVector(width / 2, height);
-    this.step = 5;
+    this.step = 7;
     this.moveLeft = false;
     this.moveRight = false;
   }
