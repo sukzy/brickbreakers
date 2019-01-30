@@ -6,8 +6,11 @@ class Ball {
   reset() {
     this.r = 20;
     this.pos = createVector(width / 2, height / 2);
-    this.stepX = 1;
-    this.stepY = 2;
+    this.stepX = random(2, 5);
+    this.stepY = random(4, 7);
+    if (random(1) < 0.5) {
+      this.stepX = this.stepX * -1;
+    }
   }
 
   show() {
@@ -21,24 +24,39 @@ class Ball {
     this.pos.y += this.stepY;
   }
 
-  hitPaddle(p) {
-    if (this.pos.x > p.pos.x - this.r && this.pos.x < p.pos.x + p.width + this.r) {
-      if (this.pos.y < p.pos.y && this.pos.y > p.pos.y - this.r) {
-          return true;
-        }
-      }
+  bounceY() {
+    this.stepY = this.stepY * -1;
+  }
+
+  bounceX() {
+    this.stepX = this.stepX * -1;
+  }
+
+  checkEdge() {
+    if (this.pos.y > height + this.r) {
+      this.reset();
+    } else if (this.pos.y < 0 + this.r / 2) {
+      this.bounceY();
     }
 
-    bounce() {
-      this.stepY = this.stepY * -1;
+    if (this.pos.x < 0 + this.r / 2 || this.pos.x > width - this.r / 2) {
+      this.bounceX();
     }
+  }
 
-    checkEdge() {
-      if (this.pos.y > height + this.r) {
-        this.reset();
-      }
-      if (this.pos.x < 0 + this.r / 2 || this.pos.x > width - this.r / 2) {
-        this.stepX = this.stepX * -1;
+  hitPaddle(paddle) {
+    if (this.pos.x > paddle.pos.x - this.r && this.pos.x < paddle.pos.x + paddle.width + this.r) {
+      if (this.pos.y < paddle.pos.y && this.pos.y > paddle.pos.y - this.r / 2) {
+        return true;
       }
     }
   }
+
+  hitBrick(brick) {
+    if (this.pos.x > brick.pos.x && this.pos.x < brick.pos.x + brick.width) {
+      if (this.pos.y < brick.pos.y + this.r && this.pos.y > brick.pos.y - this.r) {
+        return true;
+      }
+    }
+  }
+}
