@@ -2,7 +2,7 @@ class Paddle {
   constructor() {
     this.width = 120;
     this.height = 20;
-    this.pos = createVector(width / 2, height);
+    this.pos = createVector(width / 2, height - this.height);
     this.step = 7;
     this.moveLeft = false;
     this.moveRight = false;
@@ -11,7 +11,7 @@ class Paddle {
   show() {
     fill(250, 90, 135);
     noStroke();
-    rect(this.pos.x, this.pos.y - this.height, this.width, this.height);
+    rect(this.pos.x, this.pos.y, this.width, this.height);
   }
 
   move() {
