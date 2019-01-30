@@ -6,7 +6,7 @@ class Brick {
   }
 
   show() {
-    fill(150, 10, 200);
+    fill(255, 246, 143);
     stroke(0);
     rect(this.pos.x, this.pos.y, this.width, this.height);
   }
