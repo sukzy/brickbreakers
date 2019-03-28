@@ -6,8 +6,8 @@ class Ball {
   reset() {
     this.r = 20;
     this.pos = createVector(width / 2, height / 2);
-    this.stepX = random(2, 4);
-    this.stepY = random(3, 5);
+    this.stepX = random(3, 5);
+    this.stepY = random(4, 6);
     if (random(1) < 0.5) {
       this.stepX = this.stepX * -1;
     }
